@@ -3,6 +3,9 @@
 
 class Solution {
     
+    
+    
+    //TC:O(n)    SC:O(n)
     public int helper(int[] cost,int n,int[] dp)   //recursion + memoization(top down)
     {
         if(n<2)
@@ -24,7 +27,8 @@ class Solution {
     
     
     
-    //BEST APPROACH
+    
+     //TC:O(n)    SC:O(n)
     public int helper2(int[] cost,int[] dp,int n)     //recursion + tabulation(bottom up)      B
     {
         
@@ -44,6 +48,26 @@ class Solution {
     
     
     
+    //TC: O(n)   SC:O(1)
+   public int helper3(int[] cost,int n)                         //BEST APPROACH
+    {
+        int prev2=cost[0];
+        int prev1=cost[1];
+        for(int i=2;i<n;i++)
+        {
+            int ans=cost[i] + Math.min(prev1,prev2);
+            prev2=prev1;
+            prev1=ans;
+        }
+        return Math.min(prev1,prev2);
+    }
+    
+    
+    
+    
+    
+    
+    
     public int minCostClimbingStairs(int[] cost) {
 //         int n=cost.length;      //     recursion+memoization
 //         int[] dp=new int[n+1];
@@ -56,12 +80,25 @@ class Solution {
 //         int ans=Math.min(helper(cost,cost.length-1,dp),helper(cost,cost.length-2,dp));
 //         return ans;
         
-        int n=cost.length;
-        int[] dp=new int[n+1];
-        dp[0]=cost[0];
-        dp[1]=cost[1];
         
-        int ans=helper2(cost,dp,n);
+        
+        
+        
+        
+//         int n=cost.length;                 //recursion + tabulation
+//         int[] dp=new int[n+1];
+//         dp[0]=cost[0];
+//         dp[1]=cost[1];
+        
+//         int ans=helper2(cost,dp,n);
+//         return ans;
+        
+        
+        
+        
+        
+        int n=cost.length;    //O(1) SC approach
+        int ans=helper3(cost,n);
         return ans;
         
         
